@@ -154,7 +154,7 @@ namespace WristbandCsharp
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -164,12 +164,12 @@ namespace WristbandCsharp
 
         private void button2_Click(object sender, EventArgs e)
         {
-            tracking = false;
+            tracker = null;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
