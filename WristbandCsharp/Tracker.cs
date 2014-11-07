@@ -48,10 +48,10 @@ namespace WristbandCsharp
 
         SURFDetector surfDetector;
 
-        public Tracker()
+        public Tracker(string directory)
         {
             surfDetector = new SURFDetector(500, false);
-            frostedFlakes  = new Image<Gray,byte>("C:\\Users\\hfs5022\\Downloads\\KelloggsFrostedFlakescereal_450.jpg");
+            frostedFlakes  = new Image<Gray,byte>(directory);
             frostedFlakesKP = surfDetector.DetectKeyPointsRaw(frostedFlakes,null);
             frostedFlakesDescriptors = surfDetector.ComputeDescriptorsRaw(frostedFlakes, null, frostedFlakesKP);
             roi = Rectangle.Empty;

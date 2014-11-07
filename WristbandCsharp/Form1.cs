@@ -12,6 +12,7 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.Util;
 using System.IO.Ports;
+using System.IO;
 
 namespace WristbandCsharp
 {
@@ -20,18 +21,23 @@ namespace WristbandCsharp
 
         Capture cap;
         Image<Bgr,Byte> image;
-        Tracker tracker;
+        Tracker tracker = null;
         Arduino arduino;
         Boolean tracking = false;
 
         public Form1()
         {
-            tracker = new Tracker();
 
             InitializeComponent();
 
             // Combo box 1
-            comboBox1.SelectedIndex = 0;
+            string[] itemNames = Directory.GetFiles("itemsToTrack/", "*.jpg");
+            foreach (string s in itemNames)
+            {
+                string name = System.Text.RegularExpressions.Regex.Replace(s, "itemsToTrack/", "");
+                name = System.Text.RegularExpressions.Regex.Replace(name, ".jpg", "");
+                comboBox1.Items.Add(name);
+            }
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
 
             // Combo box 2
@@ -69,14 +75,19 @@ namespace WristbandCsharp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            tracking = true;
+            // Return if nothing selected.
+            if (comboBox1.SelectedItem == "") return;
+
+            tracker = new Tracker(
+                string.Format("itemsToTrack/{0}.jpg", comboBox1.SelectedItem)
+                );
         }
 
         void showFromCam(object sender, EventArgs e)
         {
             image = cap.QueryFrame();
             Image<Bgr, Byte> returnimage = image;
-            if (tracking)
+            if (tracker != null)
             {
                 try
                 {
