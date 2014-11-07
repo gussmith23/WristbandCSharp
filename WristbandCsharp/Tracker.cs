@@ -27,9 +27,9 @@ namespace WristbandCsharp
         int[] keypoint_classes;
         public Rectangle roi;
 
-        Image<Gray,Byte> frostedFlakes;
-        VectorOfKeyPoint frostedFlakesKP;
-        Matrix<float> frostedFlakesDescriptors;
+        Image<Gray,Byte> itemImage;
+        VectorOfKeyPoint itemKP;
+        Matrix<float> itemDescriptors;
         VectorOfKeyPoint observedKP;
         Matrix<float> observedDescriptors;
         BruteForceMatcher<float> matcher;
@@ -51,14 +51,14 @@ namespace WristbandCsharp
         public Tracker(string directory)
         {
             surfDetector = new SURFDetector(500, false);
-            frostedFlakes  = new Image<Gray,byte>(directory);
-            frostedFlakesKP = surfDetector.DetectKeyPointsRaw(frostedFlakes,null);
-            frostedFlakesDescriptors = surfDetector.ComputeDescriptorsRaw(frostedFlakes, null, frostedFlakesKP);
+            itemImage  = new Image<Gray,byte>(directory);
+            itemKP = surfDetector.DetectKeyPointsRaw(itemImage,null);
+            itemDescriptors = surfDetector.ComputeDescriptorsRaw(itemImage, null, itemKP);
             roi = Rectangle.Empty;
 
             // Preparing matcher
             matcher = new BruteForceMatcher<float>(DistanceType.L2);
-            matcher.Add(frostedFlakesDescriptors);
+            matcher.Add(itemDescriptors);
 
             // I HAD TO CHANGE CMT TO PUBLIC FOR THIS TO WORK.
             cmtTracker = new CMT_Tracker.CMT();
@@ -121,19 +121,19 @@ namespace WristbandCsharp
             int nonZeroCount = CvInvoke.cvCountNonZero(mask);
             if (nonZeroCount >= 4)
             {
-                nonZeroCount = Features2DToolbox.VoteForSizeAndOrientation(frostedFlakesKP, observedKP, indices, mask, 1.5, 20);
+                nonZeroCount = Features2DToolbox.VoteForSizeAndOrientation(itemKP, observedKP, indices, mask, 1.5, 20);
                 if (nonZeroCount >= 4)
-                    homography = Features2DToolbox.GetHomographyMatrixFromMatchedFeatures(frostedFlakesKP, observedKP, indices, mask, 3);
+                    homography = Features2DToolbox.GetHomographyMatrixFromMatchedFeatures(itemKP, observedKP, indices, mask, 3);
             }
 
 
             // Get keypoints.
-            keyPts = new PointF[frostedFlakesKP.Size];
-            classes = new int[frostedFlakesKP.Size];
-            for (int i = 0; i < frostedFlakesKP.Size; i++)
+            keyPts = new PointF[itemKP.Size];
+            classes = new int[itemKP.Size];
+            for (int i = 0; i < itemKP.Size; i++)
             {
-                keyPts[i] = frostedFlakesKP[i].Point;
-                classes[i] = frostedFlakesKP[i].ClassId;
+                keyPts[i] = itemKP[i].Point;
+                classes[i] = itemKP[i].ClassId;
             }
 
             prevFrame = image;
@@ -143,7 +143,7 @@ namespace WristbandCsharp
             // Find ROI
             PointF minXY = new PointF();
             PointF maxXY = new PointF();
-            for (int i = 0; i < frostedFlakesKP.Size; i++)
+            for (int i = 0; i < itemKP.Size; i++)
             {
                 PointF pt = keyPts[i];
                 if (pt.X < minXY.X) minXY.X = pt.X;
@@ -162,7 +162,7 @@ namespace WristbandCsharp
             
             PointF[] projectedPoints = null;
             if (homography != null) {
-                Rectangle rect = frostedFlakes.ROI;
+                Rectangle rect = itemImage.ROI;
                 projectedPoints = new PointF[] { 
                    new PointF(rect.Left, rect.Bottom),
                    new PointF(rect.Right, rect.Bottom),
