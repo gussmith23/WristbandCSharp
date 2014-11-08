@@ -36,6 +36,8 @@ namespace WristbandCsharp
 
             InitializeComponent();
 
+            IntiailizeROIReceiver();
+
             // Combo box 1
             string[] itemNames = Directory.GetFiles("itemsToTrack/", "*.jpg");
             foreach (string s in itemNames)
@@ -67,8 +69,11 @@ namespace WristbandCsharp
         // ROI RECEIVER CODE -----------------------------
         private void IntiailizeROIReceiver()
         {
+            roiRec = null;
             roiRec = new ROIStreaming.ROIReceiver(8000);
             roiRec.NewROIsReceived += roiRec_NewROIsReceived;
+
+            if (roiRec != null) Console.WriteLine("RoiReceiver initialized!");
         }
 
         void roiRec_NewROIsReceived(List<Tuple<string, Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>>> newROIs)
