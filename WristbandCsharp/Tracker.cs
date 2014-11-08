@@ -215,7 +215,7 @@ namespace WristbandCsharp
 
             if (thetaPercent >= 0 && thetaPercent < 25.0) return 0;
             else if (thetaPercent >= 25.0 && thetaPercent < 50.0) return 1;
-            else if (thetaPercent >= -50.0 && thetaPercent < -25.) return 2;
+            else if (thetaPercent >= -50.0 && thetaPercent < -25.0) return 2;
             else if (thetaPercent >= -25.0 && thetaPercent < 0.0) return 3;
             else return -1;
             
