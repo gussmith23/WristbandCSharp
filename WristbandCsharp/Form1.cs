@@ -81,7 +81,7 @@ namespace WristbandCsharp
 
         private void HandleROI(string p, Image<Bgr, byte> image)
         {
-            
+            tracker = new Tracker(image);
         }
         // END ROI RECEIVER CODE ---------------------------------
 
@@ -107,7 +107,7 @@ namespace WristbandCsharp
         private void button1_Click(object sender, EventArgs e)
         {
             // Return if nothing selected.
-            if (comboBox1.SelectedItem == (string)"") return;
+            if ((string)comboBox1.SelectedItem == "") return;
 
             tracker = new Tracker(
                 string.Format("itemsToTrack/{0}.jpg", comboBox1.SelectedItem)
@@ -337,6 +337,8 @@ namespace WristbandCsharp
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
             comboBox1.Enabled = !checkBox4.Checked;
+            button1.Enabled = !checkBox4.Checked;
+            button2.Enabled = !checkBox4.Checked;
         }
 
     }
