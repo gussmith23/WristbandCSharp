@@ -44,9 +44,12 @@ namespace WristbandCsharp
                 comboBox1.Items.Add(name);
             }
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.SelectedIndex = 0;
 
             // Combo box 2
             RefreshSerialPortList();
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.SelectedIndex = 0;
 
             // Haptic feedback starts disabled
             checkBox1.Enabled = false;
@@ -81,7 +84,7 @@ namespace WristbandCsharp
         private void button1_Click(object sender, EventArgs e)
         {
             // Return if nothing selected.
-            if (comboBox1.SelectedItem == "") return;
+            if (comboBox1.SelectedItem == (string)"") return;
 
             tracker = new Tracker(
                 string.Format("itemsToTrack/{0}.jpg", comboBox1.SelectedItem)
