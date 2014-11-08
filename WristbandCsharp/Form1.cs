@@ -36,7 +36,7 @@ namespace WristbandCsharp
 
             InitializeComponent();
 
-            IntiailizeROIReceiver();
+ 
 
             // Combo box 1
             string[] itemNames = Directory.GetFiles("itemsToTrack/", "*.jpg");
