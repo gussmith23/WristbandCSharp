@@ -126,7 +126,7 @@ namespace WristbandCsharp
             if (checkBox2.Checked)
             {
                 // Get direction to force in
-                int direction = Tracker.findDirection(tracker.centerOfObject, new Size(pictureBox1.Width / 2, pictureBox1.Height / 2));
+                int direction = Tracker.findDirection(tracker.centerOfObject, new PointF(pictureBox1.Width / 2, pictureBox1.Height / 2));
 
                 switch (direction)
                 {
@@ -142,13 +142,16 @@ namespace WristbandCsharp
                     case 3:
                         speechWorker.setDirection("down");
                         break;
+                    case -1:
+                        speechWorker.setDirection("");
+                        break;
                 }
             }
 
             if (checkBox3.Checked)
             {
                 // Get direction to force in
-                int direction = Tracker.findDirection(tracker.centerOfObject, new Size(pictureBox1.Width / 2, pictureBox1.Height / 2));
+                int direction = Tracker.findDirection(tracker.centerOfObject, new PointF(pictureBox1.Width / 2, pictureBox1.Height / 2));
 
                 switch (direction)
                 {
@@ -163,6 +166,9 @@ namespace WristbandCsharp
                         break;
                     case 3:
                         label5.Text = "down";
+                        break;
+                    case -1:
+                        label5.Text = "";
                         break;
                 }
 

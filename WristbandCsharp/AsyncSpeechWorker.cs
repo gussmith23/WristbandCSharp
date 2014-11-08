@@ -24,7 +24,7 @@ namespace WristbandCsharp
         {
             while (!shouldStop)
             {
-                if (direction != "") se.SpeakAsync(direction);
+                if (direction != "") se.Speak(direction);
             }
         }
 

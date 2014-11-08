@@ -201,24 +201,27 @@ namespace WristbandCsharp
         }
 
         // Find the direction to force the hand in. 0 =
-        public static int findDirection(PointF centerOfObject, SizeF centerOfScreen)
+        public static int findDirection(PointF centerOfObject, PointF centerOfScreen)
         {
             // Vector pointing from center of screen to the object.
-            PointF pointingVector = PointF.Subtract(centerOfObject, centerOfScreen);
+            // Notice we negate the Y term - this is to put theta in terms of the Cartesian plane we generally think in,
+            //      not int terms of winforms' coordinates (where down is positive Y)
+            PointF pointingVector = new PointF(
+                centerOfScreen.X - centerOfObject.X,
+                 -(centerOfScreen.Y - centerOfObject.Y)
+                );
 
-            // We add 45deg to theta so that the ranges corresponding to left,right,up,down correspond to the four quadrants.
-            double theta = (Math.Atan2(pointingVector.Y, pointingVector.X) + 45.0*(Math.PI / 180.0)) % (2.0 * Math.PI);
-            double thetaPercent = 100.0 * (theta/(2.0*Math.PI));
+            double theta = (Math.Atan2(pointingVector.Y, pointingVector.X)); //+ 45.0*(Math.PI / 180.0)) % (2.0 * Math.PI);
 
-            // WOULD return thetaPercent/4 WORK?
-            // would also need a check to see that it's between 0-4
+            double thetaPercent = (theta / (2.0 * Math.PI)) * 100.0;
 
-            if (thetaPercent >= 0 && thetaPercent < 25.0) return 2;
-            else if (thetaPercent >= 25.0 && thetaPercent < 50.0) return 1;
-            else if (thetaPercent >= -50.0 && thetaPercent < -25.0) return 0;
-            else if (thetaPercent >= -25.0 && thetaPercent < 0.0) return 3;
-            else return -1;
             
+            if (thetaPercent > -25.0/2.0 && thetaPercent <= 25.0/2.0) return 0;
+            else if (thetaPercent > 25.0/2.0 && thetaPercent <= 25.0 + 25.0/2.0) return 1;
+            else if (thetaPercent <= -25.0 + -25.0 / 2.0 || thetaPercent > 25.0 + 25.0 / 2.0) return 2;
+            else if (thetaPercent > -25 + -25.0 / 2.0 && thetaPercent <= -25.0 / 2.0) return 3;
+            else return -1;
+         
         }
         
     }
