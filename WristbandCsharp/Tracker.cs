@@ -200,7 +200,7 @@ namespace WristbandCsharp
             return image;
         }
 
-        // Find the direction to force the hand in. 0 = right, 1 = up, 2 = left, 3 = down
+        // Find the direction to force the hand in. 0 =
         public static int findDirection(PointF centerOfObject, SizeF centerOfScreen)
         {
             // Vector pointing from center of screen to the object.
@@ -213,10 +213,10 @@ namespace WristbandCsharp
             // WOULD return thetaPercent/4 WORK?
             // would also need a check to see that it's between 0-4
 
-            if (thetaPercent >= 0 && thetaPercent < 25.0) return 0;
-            else if (thetaPercent >= 25.0 && thetaPercent < 50.0) return 3;
-            else if (thetaPercent >= -50.0 && thetaPercent < -25.0) return 2;
-            else if (thetaPercent >= -25.0 && thetaPercent < 0.0) return 1;
+            if (thetaPercent >= 0 && thetaPercent < 25.0) return 2;
+            else if (thetaPercent >= 25.0 && thetaPercent < 50.0) return 1;
+            else if (thetaPercent >= -50.0 && thetaPercent < -25.0) return 0;
+            else if (thetaPercent >= -25.0 && thetaPercent < 0.0) return 3;
             else return -1;
             
         }
