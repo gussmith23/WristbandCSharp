@@ -276,6 +276,7 @@ namespace WristbandCsharp
             {
                 speechWorker = new AsyncSpeechWorker();
                 speechThread = new Thread(speechWorker.doWork);
+                speechThread.Start();
                 // Wait
                 while(!speechThread.IsAlive);
             }
