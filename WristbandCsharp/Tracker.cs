@@ -50,11 +50,16 @@ namespace WristbandCsharp
 
         public Tracker(string directory)
         {
+            new Tracker(new Image<Bgr, byte>(directory));
+        }
+
+        public Tracker(Emgu.CV.Image<Bgr, byte> roi)
+        {
             surfDetector = new SURFDetector(500, false);
-            itemImage  = new Image<Gray,byte>(directory);
-            itemKP = surfDetector.DetectKeyPointsRaw(itemImage,null);
+            itemImage = roi.Convert<Gray,byte>();
+            itemKP = surfDetector.DetectKeyPointsRaw(itemImage, null);
             itemDescriptors = surfDetector.ComputeDescriptorsRaw(itemImage, null, itemKP);
-            roi = Rectangle.Empty;
+            this.roi = Rectangle.Empty;
 
             // Preparing matcher
             matcher = new BruteForceMatcher<float>(DistanceType.L2);
@@ -62,6 +67,7 @@ namespace WristbandCsharp
 
             // I HAD TO CHANGE CMT TO PUBLIC FOR THIS TO WORK.
             cmtTracker = new CMT_Tracker.CMT();
+
         }
 
         public Image<Bgr,Byte> process(Image<Bgr,Byte> image)
