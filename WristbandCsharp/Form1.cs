@@ -128,16 +128,16 @@ namespace WristbandCsharp
                 switch (direction)
                 {
                     case 0:
-                        speechEngine.Speak("right");
+                        speechEngine.SpeakAsync("right");
                         break;
                     case 1:
-                        speechEngine.Speak("up");
+                        speechEngine.SpeakAsync("up");
                         break;
                     case 2:
-                        speechEngine.Speak("left");
+                        speechEngine.SpeakAsync("left");
                         break;
                     case 3:
-                        speechEngine.Speak("down");
+                        speechEngine.SpeakAsync("down");
                         break;
                 }
             }

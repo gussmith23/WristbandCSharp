@@ -30,5 +30,12 @@ namespace Speech
             sSynth.Speak(pBuilder);
         }
 
+        public void SpeakAsync(string speechString)
+        {
+            pBuilder.ClearContent();
+            pBuilder.AppendText(speechString);
+            sSynth.SpeakAsync(pBuilder);
+        }
+
     }
 }
