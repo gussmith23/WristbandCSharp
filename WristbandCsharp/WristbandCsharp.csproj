@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arduino.cs" />
+    <Compile Include="AsyncSpeechWorker.cs" />
     <Compile Include="SpeechEngine.cs" />
     <Compile Include="Tracker.cs" />
     <Compile Include="Form1.cs">
