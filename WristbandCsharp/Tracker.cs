@@ -48,9 +48,8 @@ namespace WristbandCsharp
 
         SURFDetector surfDetector;
 
-        public Tracker(string directory)
+        public Tracker(string directory) : this(new Image<Bgr, byte>(directory))
         {
-            new Tracker(new Image<Bgr, byte>(directory));
         }
 
         public Tracker(Emgu.CV.Image<Bgr, byte> roi)
