@@ -14,6 +14,7 @@ using Emgu.Util;
 using System.IO.Ports;
 using System.IO;
 using Speech;
+using System.Threading;
 
 namespace WristbandCsharp
 {
@@ -26,6 +27,8 @@ namespace WristbandCsharp
         Arduino arduino;
         Boolean tracking = false;
         SpeechEngine speechEngine = null;
+        Thread speechThread;
+        AsyncSpeechWorker speechWorker;
 
         public Form1()
         {
@@ -119,8 +122,8 @@ namespace WristbandCsharp
             pictureBox1.Image = returnimage.ToBitmap();
 
             
-
-            if (speechEngine != null)
+            // Speech
+            if (checkBox2.Checked)
             {
                 // Get direction to force in
                 int direction = Tracker.findDirection(tracker.centerOfObject, new Size(pictureBox1.Width / 2, pictureBox1.Height / 2));
@@ -128,16 +131,16 @@ namespace WristbandCsharp
                 switch (direction)
                 {
                     case 0:
-                        speechEngine.SpeakAsync("right");
+                        speechWorker.setDirection("right");
                         break;
                     case 1:
-                        speechEngine.SpeakAsync("up");
+                        speechWorker.setDirection("up");
                         break;
                     case 2:
-                        speechEngine.SpeakAsync("left");
+                        speechWorker.setDirection("left");
                         break;
                     case 3:
-                        speechEngine.SpeakAsync("down");
+                        speechWorker.setDirection("down");
                         break;
                 }
             }
@@ -269,8 +272,18 @@ namespace WristbandCsharp
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox2.Checked) speechEngine = new SpeechEngine();
-            else speechEngine = null;
+            if (checkBox2.Checked)
+            {
+                speechWorker = new AsyncSpeechWorker();
+                speechThread = new Thread(speechWorker.doWork);
+                // Wait
+                while(!speechThread.IsAlive);
+            }
+            else
+            {
+                speechWorker.requestStop();
+                speechThread.Join();
+            }
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
