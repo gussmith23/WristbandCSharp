@@ -29,6 +29,7 @@ namespace WristbandCsharp
         SpeechEngine speechEngine = null;
         Thread speechThread;
         AsyncSpeechWorker speechWorker;
+        private ROIStreaming.ROIReceiver roiRec;
 
         public Form1()
         {
@@ -61,6 +62,28 @@ namespace WristbandCsharp
 
             
         }
+
+
+        // ROI RECEIVER CODE -----------------------------
+        private void IntiailizeROIReceiver()
+        {
+            roiRec = new ROIStreaming.ROIReceiver(8000);
+            roiRec.NewROIsReceived += roiRec_NewROIsReceived;
+        }
+
+        void roiRec_NewROIsReceived(List<Tuple<string, Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>>> newROIs)
+        {
+            if (newROIs.Count > 0)
+            {
+                HandleROI(newROIs[0].Item1, newROIs[0].Item2);
+            }
+        }
+
+        private void HandleROI(string p, Image<Bgr, byte> image)
+        {
+            
+        }
+        // END ROI RECEIVER CODE ---------------------------------
 
         private void imageBox1_Click(object sender, EventArgs e)
         {
@@ -309,6 +332,11 @@ namespace WristbandCsharp
         private void label5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBox1.Enabled = !checkBox4.Checked;
         }
 
     }

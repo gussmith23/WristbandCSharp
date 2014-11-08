@@ -46,3 +46,5 @@ C:\Users\MDL\Documents\Visual Studio 2012\Projects\WristbandCSharp\WristbandCSha
 C:\Users\MDL\Documents\Visual Studio 2012\Projects\WristbandCSharp\WristbandCSharp\WristbandCsharp\bin\Debug\Emgu.CV.xml
 C:\Users\MDL\Documents\Visual Studio 2012\Projects\WristbandCSharp\WristbandCSharp\WristbandCsharp\bin\Debug\Emgu.CV.UI.xml
 C:\Users\MDL\Documents\Visual Studio 2012\Projects\WristbandCSharp\WristbandCSharp\WristbandCsharp\bin\Debug\Emgu.Util.xml
+R:\hfs5022\Csharp\WristbandCsharp\WristbandCsharp\bin\Debug\ClientServer.dll
+R:\hfs5022\Csharp\WristbandCsharp\WristbandCsharp\bin\Debug\ClientServer.pdb
