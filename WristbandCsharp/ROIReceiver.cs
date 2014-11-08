@@ -19,6 +19,7 @@ namespace ROIStreaming
         public ROIReceiver(int localPort)
         {
             mServer = new ClientServer.Server();
+            mServer.MaxClients = 10;
             mServer.ClientConnected += mServer_ClientConnected;
             mServer.ClientDisconnected += mServer_ClientDisconnected;
             mServer.ClientPacketReceived += mServer_ClientPacketReceived;

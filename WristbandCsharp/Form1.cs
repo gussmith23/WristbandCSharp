@@ -36,7 +36,7 @@ namespace WristbandCsharp
 
             InitializeComponent();
 
- 
+            IntiailizeROIReceiver();
 
             // Combo box 1
             string[] itemNames = Directory.GetFiles("itemsToTrack/", "*.jpg");
@@ -58,7 +58,11 @@ namespace WristbandCsharp
             checkBox1.Enabled = false;
 
 
-            cap = new Capture();
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            cap = new Capture(2);
+            cap.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 1080.0);
+            cap.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1920.0);
             Application.Idle += new EventHandler(showFromCam);
             
 
