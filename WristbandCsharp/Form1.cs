@@ -13,6 +13,7 @@ using Emgu.CV.Structure;
 using Emgu.Util;
 using System.IO.Ports;
 using System.IO;
+using Speech;
 
 namespace WristbandCsharp
 {
@@ -24,6 +25,7 @@ namespace WristbandCsharp
         Tracker tracker = null;
         Arduino arduino;
         Boolean tracking = false;
+        SpeechEngine speechEngine = null;
 
         public Form1()
         {
@@ -85,7 +87,8 @@ namespace WristbandCsharp
 
         void showFromCam(object sender, EventArgs e)
         {
-            image = cap.QueryFrame();
+            image = null;
+            while (image == null) image = cap.QueryFrame();
             Image<Bgr, Byte> returnimage = image;
             if (tracker != null)
             {
@@ -114,6 +117,53 @@ namespace WristbandCsharp
                 }
             }
             pictureBox1.Image = returnimage.ToBitmap();
+
+            
+
+            if (speechEngine != null)
+            {
+                // Get direction to force in
+                int direction = Tracker.findDirection(tracker.centerOfObject, new Size(pictureBox1.Width / 2, pictureBox1.Height / 2));
+
+                switch (direction)
+                {
+                    case 0:
+                        speechEngine.Speak("right");
+                        break;
+                    case 1:
+                        speechEngine.Speak("up");
+                        break;
+                    case 2:
+                        speechEngine.Speak("left");
+                        break;
+                    case 3:
+                        speechEngine.Speak("down");
+                        break;
+                }
+            }
+
+            if (checkBox3.Checked)
+            {
+                // Get direction to force in
+                int direction = Tracker.findDirection(tracker.centerOfObject, new Size(pictureBox1.Width / 2, pictureBox1.Height / 2));
+
+                switch (direction)
+                {
+                    case 0:
+                        label5.Text = "right";
+                        break;
+                    case 1:
+                        label5.Text = "up";
+                        break;
+                    case 2:
+                        label5.Text = "left";
+                        break;
+                    case 3:
+                        label5.Text = "down";
+                        break;
+                }
+
+            }
 
         }
 
@@ -215,6 +265,27 @@ namespace WristbandCsharp
             arduino = null;
             checkBox1.Checked = false;
             checkBox1.Enabled = false;
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked) speechEngine = new SpeechEngine();
+            else speechEngine = null;
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            label5.Visible = checkBox3.Checked;
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

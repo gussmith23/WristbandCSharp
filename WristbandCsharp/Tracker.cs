@@ -200,5 +200,26 @@ namespace WristbandCsharp
             return image;
         }
 
+        // Find the direction to force the hand in. 0 = right, 1 = up, 2 = left, 3 = down
+        public static int findDirection(PointF centerOfObject, SizeF centerOfScreen)
+        {
+            // Vector pointing from center of screen to the object.
+            PointF pointingVector = PointF.Subtract(centerOfObject, centerOfScreen);
+
+            // We add 45deg to theta so that the ranges corresponding to left,right,up,down correspond to the four quadrants.
+            double theta = (Math.Atan2(pointingVector.Y, pointingVector.X) + 45.0*(Math.PI / 180.0)) % (2.0 * Math.PI);
+            double thetaPercent = 100.0 * (theta/(2.0*Math.PI));
+
+            // WOULD return thetaPercent/4 WORK?
+            // would also need a check to see that it's between 0-4
+
+            if (thetaPercent >= 0 && thetaPercent < 25.0) return 0;
+            else if (thetaPercent >= 25.0 && thetaPercent < 50.0) return 1;
+            else if (thetaPercent >= 50.0 && thetaPercent < 75.0) return 2;
+            else if (thetaPercent >= 75.0 && thetaPercent < 100.0) return 3;
+            else return -1;
+            
+        }
+        
     }
 }
