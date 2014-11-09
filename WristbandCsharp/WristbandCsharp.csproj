@@ -54,7 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arduino.cs" />
+    <Compile Include="AsyncObjectRecognizerWorker.cs" />
     <Compile Include="AsyncSpeechWorker.cs" />
+    <Compile Include="ObjectRecognizer.cs" />
     <Compile Include="ROIReceiver.cs" />
     <Compile Include="SpeechEngine.cs" />
     <Compile Include="Tracker.cs" />

@@ -15,6 +15,7 @@ using System.IO.Ports;
 using System.IO;
 using Speech;
 using System.Threading;
+using ObjectSpeechRecognizer;
 
 namespace WristbandCsharp
 {
@@ -30,6 +31,11 @@ namespace WristbandCsharp
         Thread speechThread;
         AsyncSpeechWorker speechWorker;
         private ROIStreaming.ROIReceiver roiRec;
+        private const string triggerPhrase = "locate";
+        private List<string> itemsAvailableForLocation;
+
+        Thread objectRecognizerThread;
+        AsyncObjectRecognizerWorker objectRecognizerWorker;
 
         public Form1()
         {
@@ -39,12 +45,14 @@ namespace WristbandCsharp
             IntiailizeROIReceiver();
 
             // Combo box 1
+            itemsAvailableForLocation = new List<string>();
             string[] itemNames = Directory.GetFiles("itemsToTrack/", "*.jpg");
             foreach (string s in itemNames)
             {
                 string name = System.Text.RegularExpressions.Regex.Replace(s, "itemsToTrack/", "");
                 name = System.Text.RegularExpressions.Regex.Replace(name, ".jpg", "");
                 comboBox1.Items.Add(name);
+                itemsAvailableForLocation.Add(name);
             }
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.SelectedIndex = 0;
@@ -90,7 +98,11 @@ namespace WristbandCsharp
 
         private void HandleROI(string p, Image<Bgr, byte> image)
         {
-            tracker = new Tracker(image);
+            if (radioButton1.Checked)
+            {
+                // Create new image with passed ROI
+                tracker = new Tracker(image);
+            }
         }
         // END ROI RECEIVER CODE ---------------------------------
 
@@ -229,6 +241,15 @@ namespace WristbandCsharp
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            // If the change happened via the voice recognizer...
+            if (radioButton2.Checked)
+            {
+                tracker = new Tracker(
+                string.Format("itemsToTrack/{0}.jpg", comboBox1.SelectedItem)
+                );
+            }
+
+
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -343,11 +364,77 @@ namespace WristbandCsharp
 
         }
 
-        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
         {
-            comboBox1.Enabled = !checkBox4.Checked;
-            button1.Enabled = !checkBox4.Checked;
-            button2.Enabled = !checkBox4.Checked;
+            
+        }
+
+        private void radioButton3_CheckedChanged_1(object sender, EventArgs e)
+        {
+            comboBox1.Enabled = radioButton1.Checked;
+            button1.Enabled = radioButton1.Checked;
+            button2.Enabled = radioButton1.Checked;
+        }
+
+        private void radioButton2_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+
+                // New worker
+                objectRecognizerWorker = new AsyncObjectRecognizerWorker(
+                    new ObjectRecognizer(triggerPhrase, itemsAvailableForLocation),
+                    delegate(string item)
+                    {
+                        // was the item in the list?
+                        bool found = false;
+
+                        // Find item in the list, set list to that item.
+                        System.Collections.IEnumerator ie = comboBox1.Items.GetEnumerator();
+                        for (int i = 0; ie.MoveNext(); i++)
+                        {
+                            if ((string)ie.Current == item)
+                            {
+                                found = true;
+
+                                if (InvokeRequired)
+                                {
+                                    this.Invoke((Action)(() => comboBox1.SelectedIndex = i));
+                                }
+                                else comboBox1.SelectedIndex = i;
+
+                            }
+                            else ; // NOT FOUND
+                        }
+
+                        if (found)
+                        {
+                            // Request that worker stops (should have been requested by this point, but to be thorough)
+                            objectRecognizerWorker.requestStop();
+
+                            // End the listener thread.
+                            objectRecognizerThread.Join();
+                        }
+                    }
+                    );
+
+                // New thread
+                objectRecognizerThread = new Thread(objectRecognizerWorker.doWork);
+
+                // Start thread
+                objectRecognizerThread.Start();
+
+                // Wait
+                while(!objectRecognizerThread.IsAlive);
+
+            }
+
+            else
+            {
+                // Else, we shut down the thread and the worker.
+                objectRecognizerWorker.requestStop();
+                objectRecognizerThread.Join();
+            }
         }
 
     }
