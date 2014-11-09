@@ -59,7 +59,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(640, 440);
+            this.pictureBox1.Size = new System.Drawing.Size(1600, 900);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -75,11 +75,11 @@
             this.groupBox1.Controls.Add(this.checkBox2);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(646, 202);
+            this.groupBox1.Location = new System.Drawing.Point(12, 1081);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(164, 185);
+            this.groupBox1.Size = new System.Drawing.Size(225, 304);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Feedback Settings";
@@ -88,7 +88,7 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(14, 160);
+            this.checkBox3.Location = new System.Drawing.Point(14, 192);
             this.checkBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(67, 24);
@@ -100,10 +100,10 @@
             // button6
             // 
             this.button6.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.button6.Location = new System.Drawing.Point(78, 38);
+            this.button6.Location = new System.Drawing.Point(78, 42);
             this.button6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(56, 28);
+            this.button6.Size = new System.Drawing.Size(83, 28);
             this.button6.TabIndex = 12;
             this.button6.Text = "Refresh";
             this.button6.UseVisualStyleBackColor = true;
@@ -112,10 +112,10 @@
             // button4
             // 
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button4.Location = new System.Drawing.Point(69, 70);
+            this.button4.Location = new System.Drawing.Point(97, 80);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(78, 28);
+            this.button4.Size = new System.Drawing.Size(111, 28);
             this.button4.TabIndex = 11;
             this.button4.Text = "Disconnect";
             this.button4.UseVisualStyleBackColor = true;
@@ -124,10 +124,10 @@
             // button5
             // 
             this.button5.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.button5.Location = new System.Drawing.Point(6, 70);
+            this.button5.Location = new System.Drawing.Point(6, 80);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(63, 28);
+            this.button5.Size = new System.Drawing.Size(85, 28);
             this.button5.TabIndex = 10;
             this.button5.Text = "Connect";
             this.button5.UseVisualStyleBackColor = true;
@@ -136,7 +136,7 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(7, 41);
+            this.comboBox2.Location = new System.Drawing.Point(7, 45);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(65, 28);
@@ -156,7 +156,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(14, 141);
+            this.checkBox2.Location = new System.Drawing.Point(14, 168);
             this.checkBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(77, 24);
@@ -168,7 +168,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(14, 122);
+            this.checkBox1.Location = new System.Drawing.Point(14, 144);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(84, 24);
@@ -180,7 +180,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 106);
+            this.label3.Location = new System.Drawing.Point(6, 120);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 20);
             this.label3.TabIndex = 5;
@@ -197,11 +197,11 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.radioButton2);
             this.groupBox2.Controls.Add(this.radioButton1);
-            this.groupBox2.Location = new System.Drawing.Point(646, 3);
+            this.groupBox2.Location = new System.Drawing.Point(12, 807);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(164, 191);
+            this.groupBox2.Size = new System.Drawing.Size(225, 266);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tracking Settings";
@@ -210,7 +210,7 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(12, 127);
+            this.checkBox4.Location = new System.Drawing.Point(12, 159);
             this.checkBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(186, 24);
@@ -222,10 +222,10 @@
             // button2
             // 
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.Location = new System.Drawing.Point(63, 155);
+            this.button2.Location = new System.Drawing.Point(74, 187);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(43, 28);
+            this.button2.Size = new System.Drawing.Size(66, 28);
             this.button2.TabIndex = 5;
             this.button2.Text = "Stop";
             this.button2.UseVisualStyleBackColor = true;
@@ -234,7 +234,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 81);
+            this.label2.Location = new System.Drawing.Point(6, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(124, 20);
             this.label2.TabIndex = 4;
@@ -244,7 +244,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(9, 101);
+            this.comboBox1.Location = new System.Drawing.Point(9, 125);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 28);
@@ -254,10 +254,10 @@
             // button1
             // 
             this.button1.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.button1.Location = new System.Drawing.Point(7, 155);
+            this.button1.Location = new System.Drawing.Point(7, 187);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 28);
+            this.button1.Size = new System.Drawing.Size(61, 28);
             this.button1.TabIndex = 1;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
@@ -266,7 +266,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 18);
+            this.label1.Location = new System.Drawing.Point(6, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(114, 20);
             this.label1.TabIndex = 2;
@@ -276,7 +276,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(13, 53);
+            this.radioButton2.Location = new System.Drawing.Point(13, 72);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(119, 24);
@@ -288,7 +288,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(13, 37);
+            this.radioButton1.Location = new System.Drawing.Point(13, 47);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(138, 24);
@@ -301,7 +301,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(681, 398);
+            this.label5.Location = new System.Drawing.Point(498, 972);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(139, 52);
             this.label5.TabIndex = 4;
@@ -313,13 +313,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(817, 440);
+            this.ClientSize = new System.Drawing.Size(1418, 1398);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
